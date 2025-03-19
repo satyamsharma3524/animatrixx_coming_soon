@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Anime & Manga Streaming</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('./BG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+        }
+        h1 {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin: 0;
+        }
+        p {
+            font-size: 1.8em;
+            margin: 10px 0;
+        }
+        .countdown {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .highlight {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="highlight">Get ready</span>, anime and manga lovers!</h1>
+        <p>Something <span class="highlight">exciting</span> is coming soon...</p>
+        <p class="countdown" id="countdown"></p>
+    </div>
+    
+    <script>
+        function countdown() {
+            const launchDate = new Date("2025-06-01").getTime();
+            const timer = setInterval(() => {
+                const now = new Date().getTime();
+                const difference = launchDate - now;
+                
+                if (difference <= 0) {
+                    document.getElementById("countdown").innerHTML = "We're Live!";
+                    clearInterval(timer);
+                    return;
+                }
+                
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                document.getElementById("countdown").innerHTML = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+        countdown();
+    </script>
+</body>
+</html>
